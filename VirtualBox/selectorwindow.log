@@ -1,0 +1,19 @@
+00:00:00.933039 VirtualBox GUI VM Selector Window 6.1.32 r149290 linux.amd64 (Jan 18 2022 20:32:19) release log
+00:00:00.933040 Log opened 2022-02-05T13:29:36.813933000Z
+00:00:00.933040 Build Type: release
+00:00:00.933042 OS Product: Linux
+00:00:00.933042 OS Release: 5.16.5-arch1-1
+00:00:00.933043 OS Version: #1 SMP PREEMPT Tue, 01 Feb 2022 21:42:50 +0000
+00:00:00.933059 DMI Product Name: 10TV003MCR
+00:00:00.933064 DMI Product Version: V530-15ICB
+00:00:00.933066 Firmware type: UEFI
+00:00:00.933837 Secure Boot: Disabled
+00:00:00.933861 Host RAM: 31992MB (31.2GB) total, 28259MB (27.5GB) available
+00:00:00.933864 Executable: /usr/lib/virtualbox/VirtualBox
+00:00:00.933864 Process ID: 146758
+00:00:00.933864 Package type: LINUX_64BITS_GENERIC (OSE)
+00:00:00.933883 Qt version: 5.15.2
+00:00:01.119339 GUI: UIMediumEnumerator: Medium-enumeration started...
+00:00:02.135686 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 1 work area is actually resized to: 640x0 x 640x1055
+00:00:02.136537 GUI: UIDesktopWidgetWatchdog::sltHandleHostScreenAvailableGeometryCalculated: Screen 0 work area is actually resized to: 0x0 x 640x1055
+00:00:02.152418 GUI: UIMediumEnumerator: Medium-enumeration finished!
