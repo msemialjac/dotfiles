@@ -11,6 +11,7 @@ x-scheme-handler/webcal=userapp-Thunderbird-WGAHG1.desktop
 text/calendar=userapp-Thunderbird-WGAHG1.desktop
 application/x-extension-ics=userapp-Thunderbird-WGAHG1.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-WGAHG1.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-K3OCG1.desktop;
@@ -19,3 +20,4 @@ x-scheme-handler/webcal=userapp-Thunderbird-WGAHG1.desktop;
 x-scheme-handler/webcals=userapp-Thunderbird-WGAHG1.desktop;
 text/plain=libreoffice-writer.desktop;
 application/javascript=code-oss.desktop;
+application/pdf=org.gnome.Evince.desktop;

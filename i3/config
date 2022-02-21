@@ -131,9 +131,22 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+# move focused container to workspace and follow
+bindsym $mod+Control+1 move container to workspace number $ws1; workspace number $ws1
+bindsym $mod+Control+2 move container to workspace number $ws2; workspace number $ws2
+bindsym $mod+Control+3 move container to workspace number $ws3; workspace number $ws3
+bindsym $mod+Control+4 move container to workspace number $ws4; workspace number $ws4
+bindsym $mod+Control+5 move container to workspace number $ws5; workspace number $ws5
+bindsym $mod+Control+6 move container to workspace number $ws6; workspace number $ws6
+bindsym $mod+Control+7 move container to workspace number $ws7; workspace number $ws7
+bindsym $mod+Control+8 move container to workspace number $ws8; workspace number $ws8
+bindsym $mod+Control+9 move container to workspace number $ws9; workspace number $ws9
+bindsym $mod+Control+0 move container to workspace number $ws10; workspace number $ws10
+
 # Gnome addons
 # exec --no-startup-id /usr/lib/gsd-xsettings
 exec_always --no-startup-id blueman-tray 
+exec_always --no-startup-id blueman 
 # exec_always --no-startup-id gnome-session-i3 
 exec_always --no-startup-id pasystray 
 # exec_always --no-startup-id gnome-power-manager
@@ -199,8 +212,8 @@ set $i3lockwall i3lock -i /home/msb/Pictures/Wallpapers/dark.png -t
 bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 
 # volume control (keyboard)
-#bindsym $mod+minus exec "amixer set Master 5%-"
-#bindsym $mod+plus exec "amixer set Master 5%+"
+bindsym $mod+minus exec "amixer set Master 5%-"
+bindsym $mod+plus exec "amixer set Master 5%+"
 #Volume Control in ALG i3
 #bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 #bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
@@ -242,8 +255,8 @@ exec_always --no-startup-id VBoxClient --checkhostversion
 exec_always --no-startup-id VBoxClient --vmsvga
 
 # Custom - App shortcuts
-bindsym $mod+Ctrl+h exec --no-startup-id i3-sensible-terminal -hold -e htop
-bindsym $mod+Ctrl+r exec --no-startup-id i3-sensible-terminal -hold -e ranger
+# bindsym $mod+Ctrl+h exec --no-startup-id i3-sensible-terminal -hold -e htop
+# bindsym $mod+Ctrl+r exec --no-startup-id i3-sensible-terminal -hold -e ranger
 bindsym $mod+Ctrl+l exec --no-startup-id i3-sensible-terminal -hold -e lf
 bindsym $mod+Ctrl+v exec --no-startup-id i3-sensible-terminal -hold -e lvim
 bindsym --release $mod+Ctrl+x exec xkill # Source: https://unix.stackexchange.com/questions/383065/execute-xkill-in-i3
@@ -256,9 +269,22 @@ bindsym $mod+Ctrl+o workspace $ws5; exec --no-startup-id libreoffice
 bindsym $mod+Ctrl+t workspace $ws6;exec --no-startup-id thunderbird
 bindsym $mod+Ctrl+s workspace $ws8; exec --no-startup-id slack 
 bindsym $mod+Ctrl+z workspace $ws10;exec --no-startup-id zoom
-#bindsym $mod+Shift+h exec htop
-#bindsym $mod+Shift+h exec htop
-#bindsym $mod+Shift+h exec htop
+
+# scratchpads
+for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
+for_window [class="Gnome-terminal" title="Scratchpad"] move scratchpad; show scratchpad
+# start apps in terminal and allocate them to scratchpads
+bindsym $mod+Ctrl+n exec --no-startup-id gnome-terminal -t "Scratchpad"
+bindsym $mod+Ctrl+h exec --no-startup-id gnome-terminal -t "Scratchpad" -e htop
+bindsym $mod+Ctrl+a exec --no-startup-id gnome-terminal -t "Scratchpad" -e pulsemixer
+bindsym $mod+Ctrl+r exec --no-startup-id gnome-terminal -t "Scratchpad" -e ranger
+
+
+# send any app to a scratchpad
+bindsym $mod+Shift+BackSpace move scratchpad
+
+# toggle scratchpads
+bindsym $mod+Ctrl+BackSpace scratchpad show
 
 # Some interesting improvements from i3 config in Arch GUI install 
 
@@ -325,10 +351,10 @@ bar {
 
 #B280E1 #073642 #696f89
                                             #BORDER #FILL   #TEXT
-                  focused_workspace         #72C373 #72C373 #00252E
-                 active_workspace           #7372C3 #7372C3 #ffffff 
+                  focused_workspace         #72C373 #50FA7B #282A36
+                 active_workspace           #6272A4 #6272A4 #F8F8F2 
                  inactive_workspace         #112233 #112233 #CED5D0
-                   urgent_workspace         #E59847 #E59847 #00252E
+                   urgent_workspace         #FF5555 #FF5555 #282A36
            }
   }
 

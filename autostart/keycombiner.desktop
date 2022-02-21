@@ -1,0 +1,10 @@
+
+[Desktop Entry]
+Type=Application
+Version=0.7.2
+Name=KeyCombiner
+Comment=Organize, learn, and look up keyboard shortcuts
+Exec=/home/msb/Downloads/KeyCombiner-0.7.2.AppImage --hidden
+StartupNotify=false
+Terminal=false
+  

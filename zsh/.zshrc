@@ -60,7 +60,7 @@ source "$ZDOTDIR/zsh-functions"
 
 # Normal files to source
 zsh_add_file "zsh-exports"
-zsh_add_file "zsh-vim-mode"
+# zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt"
 
@@ -88,6 +88,7 @@ function copydir {
   print -n $PWD | pbcopy # instead of clipcopy
 }
 
+#----------------------------
 # Web Search 
 function web_search() {
   emulate -L zsh
@@ -137,6 +138,7 @@ if [[ ${#ZSH_WEB_SEARCH_ENGINES} -gt 0 ]]; then
   unset engines key
 fi
 
+#----------------------------
 # sudo - 2x ESC for sudo prefix
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
@@ -157,12 +159,14 @@ zle -N sudo-command-line
 bindkey "\^e\^e" sudo-command-line
 bindkey -M vicmd '\e\e' sudo-command-line
 
+#----------------------------
 # copyfile <file>
 function copyfile {
   emulate -L zsh
   pbcopy $1
 }
 
+#----------------------------
 # copy the active line from the command line buffer
 # onto the system clipboard
 
@@ -180,6 +184,7 @@ zle -N copybuffer
 #bindkey -M viins "^O" copybuffer
 bindkey -M vicmd "^O" copybuffer
 
+#----------------------------
 ##
 #   Navigate directory history using ALT-LEFT and ALT-RIGHT. ALT-LEFT moves back to directories
 #   that the user has changed to in the past, and ALT-RIGHT undoes ALT-LEFT.
@@ -389,6 +394,7 @@ if (( ${+terminfo[kcud1]} )); then
 fi
 
 
+#----------------------------
 #This is based on: https://github.com/ranger/ranger/blob/master/examples/bash_automatic_cd.sh
 #Paste this into your .zshrc:
 
@@ -440,8 +446,8 @@ bindkey -r "^d"
 
 # Luke #1
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+# autoload edit-command-line; zle -N edit-command-line
+# bindkey '^e' edit-command-line
 
 # FZF 
 # TODO update for mac
@@ -498,7 +504,7 @@ setxkbmap -option caps:escape
 ##_comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
-bindkey -v
+# bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
@@ -531,6 +537,7 @@ alias help=run-help
 #bind '"\C-o":"lfcd\C-m"'
 
 # Change cursor shape for different vi modes.
+# ---------------------------
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
@@ -550,6 +557,8 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+# -------------------------------
+#----------------------------
 
 # Use lf to switch directories and bind it to ctrl-o
 lfcd () {
@@ -566,8 +575,8 @@ bindkey '\eq' push-input
 bindkey -s '^o' '\eqlfcd\n'
 bindkey -s '^r' '\eqrcd\n'
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+# autoload edit-command-line; zle -N edit-command-line
+# bindkey '^e' edit-command-line
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
