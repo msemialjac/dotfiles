@@ -3,7 +3,7 @@
 #
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
-
+set $TERM "alacritty"
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 set $mod Mod4
@@ -27,7 +27,7 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty #i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -145,18 +145,22 @@ bindsym $mod+Control+0 move container to workspace number $ws10; workspace numbe
 
 # Gnome addons
 # exec --no-startup-id /usr/lib/gsd-xsettings
-exec_always --no-startup-id blueman-tray 
-exec_always --no-startup-id blueman 
 # exec_always --no-startup-id gnome-session-i3 
-exec_always --no-startup-id pasystray 
 # exec_always --no-startup-id gnome-power-manager
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # exec --no-startup-id gnome-flashback
 # exec gsettings set org.gnome.gnome-flashback desktop false
+
+exec_always --no-startup-id blueman-tray 
+exec_always --no-startup-id blueman 
+exec_always --no-startup-id pasystray 
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
@@ -239,13 +243,13 @@ focus_follows_mouse  no
 
 # set wallpapper
 exec --no-startup-id feh --bg-fill --auto-zoom ~/Pictures/Wallpapers/dark.jpg
-#exec --no-startup-id feh --bg-fill /home/msb/Pictures/Wallpapers/dark.jpg   
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # compton transiton (-f flag)
 exec_always picom -f
+
 # Virtualbox monitor support
 exec_always --no-startup-id modprobe -a vboxguest vboxsf vboxvideo 
 exec_always --no-startup-id VBoxClient --clipboard
@@ -255,10 +259,8 @@ exec_always --no-startup-id VBoxClient --checkhostversion
 exec_always --no-startup-id VBoxClient --vmsvga
 
 # Custom - App shortcuts
-# bindsym $mod+Ctrl+h exec --no-startup-id i3-sensible-terminal -hold -e htop
-# bindsym $mod+Ctrl+r exec --no-startup-id i3-sensible-terminal -hold -e ranger
-bindsym $mod+Ctrl+l exec --no-startup-id i3-sensible-terminal -hold -e lf
-bindsym $mod+Ctrl+v exec --no-startup-id i3-sensible-terminal -hold -e lvim
+bindsym $mod+Ctrl+l exec --no-startup-id alacritty -hold -e lf
+bindsym $mod+Ctrl+v exec --no-startup-id alacritty -hold -e lvim
 bindsym --release $mod+Ctrl+x exec xkill # Source: https://unix.stackexchange.com/questions/383065/execute-xkill-in-i3
 bindsym $mod+Ctrl+p workspace $ws1;exec --no-startup-id pycharm
 bindsym $mod+Ctrl+c workspace $ws1;exec --no-startup-id code
@@ -269,22 +271,39 @@ bindsym $mod+Ctrl+o workspace $ws5; exec --no-startup-id libreoffice
 bindsym $mod+Ctrl+t workspace $ws6;exec --no-startup-id thunderbird
 bindsym $mod+Ctrl+s workspace $ws8; exec --no-startup-id slack 
 bindsym $mod+Ctrl+z workspace $ws10;exec --no-startup-id zoom
-
+# bindsym $mod+Ctrl+h exec --no-startup-id i3-sensible-terminal -hold -e htop
+# bindsym $mod+Ctrl+r exec --no-startup-id i3-sensible-terminal -hold -e ranger
 # scratchpads
 for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
-for_window [class="Gnome-terminal" title="Scratchpad"] move scratchpad; show scratchpad
-# start apps in terminal and allocate them to scratchpads
-bindsym $mod+Ctrl+n exec --no-startup-id gnome-terminal -t "Scratchpad"
-bindsym $mod+Ctrl+h exec --no-startup-id gnome-terminal -t "Scratchpad" -e htop
-bindsym $mod+Ctrl+a exec --no-startup-id gnome-terminal -t "Scratchpad" -e pulsemixer
-bindsym $mod+Ctrl+r exec --no-startup-id gnome-terminal -t "Scratchpad" -e ranger
 
+# start apps in terminal and allocate them to scratchpads
+bindsym Mod1+s exec --no-startup-id alacritty --class scratchpad
+bindsym Mod1+h exec --no-startup-id alacritty --class scratchpad -e htop
+bindsym Mod1+v exec --no-startup-id alacritty --class scratchpad -e pulsemixer
+bindsym Mod1+r exec --no-startup-id alacritty --class scratchpad -e ranger
 
 # send any app to a scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
 
 # toggle scratchpads
 bindsym $mod+Ctrl+BackSpace scratchpad show
+
+# scratchpads
+# for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
+# for_window [class="Gnome-terminal" title="Scratchpad"] move scratchpad; show scratchpad
+
+# start apps in terminal and allocate them to scratchpads
+# bindsym $mod+Ctrl+n exec --no-startup-id alacritty -t "Scratchpad"
+# bindsym $mod+Ctrl+h exec --no-startup-id alacritty -t "Scratchpad" -e htop
+# bindsym $mod+Ctrl+a exec --no-startup-id alacritty -t "Scratchpad" -e pulsemixer
+# bindsym $mod+Ctrl+r exec --no-startup-id alacritty -t "Scratchpad" -e ranger
+
+
+# send any app to a scratchpad
+# bindsym $mod+Shift+BackSpace move scratchpad
+
+# toggle scratchpads
+# bindsym $mod+Ctrl+BackSpace scratchpad show
 
 # Some interesting improvements from i3 config in Arch GUI install 
 

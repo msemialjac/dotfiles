@@ -60,7 +60,7 @@ source "$ZDOTDIR/zsh-functions"
 
 # Normal files to source
 zsh_add_file "zsh-exports"
-# zsh_add_file "zsh-vim-mode"
+zsh_add_file "zsh-vim-mode"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-prompt"
 
@@ -180,8 +180,8 @@ copybuffer () {
 
 zle -N copybuffer
 
-#bindkey -M emacs "^O" copybuffer
-#bindkey -M viins "^O" copybuffer
+bindkey -M emacs "^O" copybuffer
+bindkey -M viins "^O" copybuffer
 bindkey -M vicmd "^O" copybuffer
 
 #----------------------------
@@ -317,6 +317,7 @@ bindkey "\e[3D" dirhistory_zle_dirhistory_back    # xterm in normal mode
 bindkey "\e[1;3D" dirhistory_zle_dirhistory_back  # xterm in normal mode
 bindkey "\e\e[D" dirhistory_zle_dirhistory_back   # Putty
 bindkey "\eO3D" dirhistory_zle_dirhistory_back    # GNU screen
+# bindkey "^[[1;3D" dirhistory_zle_dirhistory_up  # gnome in normal mode
 case "$TERM_PROGRAM" in
 iTerm.app) bindkey "^[^[[D" dirhistory_zle_dirhistory_back ;;   # iTerm2
 Apple_Terminal) bindkey "^[b" dirhistory_zle_dirhistory_back ;; # Terminal.app
@@ -330,6 +331,7 @@ bindkey "\e[3C" dirhistory_zle_dirhistory_future    # xterm in normal mode
 bindkey "\e[1;3C" dirhistory_zle_dirhistory_future  # xterm in normal mode
 bindkey "\e\e[C" dirhistory_zle_dirhistory_future   # Putty
 bindkey "\eO3C" dirhistory_zle_dirhistory_future    # GNU screen
+# bindkey "^[[1;3C" dirhistory_zle_dirhistory_up  # gnome in normal mode
 case "$TERM_PROGRAM" in
 iTerm.app) bindkey "^[^[[C" dirhistory_zle_dirhistory_future ;;   # iTerm2
 Apple_Terminal) bindkey "^[f" dirhistory_zle_dirhistory_future ;; # Terminal.app
@@ -372,6 +374,7 @@ bindkey "\e[3A" dirhistory_zle_dirhistory_up    # xterm in normal mode
 bindkey "\e[1;3A" dirhistory_zle_dirhistory_up  # xterm in normal mode
 bindkey "\e\e[A" dirhistory_zle_dirhistory_up   # Putty
 bindkey "\eO3A" dirhistory_zle_dirhistory_up    # GNU screen
+# bindkey "^[[1;3A" dirhistory_zle_dirhistory_up  # gnome in normal mode
 case "$TERM_PROGRAM" in
 iTerm.app) bindkey "^[^[[A" dirhistory_zle_dirhistory_up ;;     # iTerm2
 Apple_Terminal) bindkey "^[[A" dirhistory_zle_dirhistory_up ;;  # Terminal.app
@@ -385,6 +388,7 @@ bindkey "\e[3B" dirhistory_zle_dirhistory_down    # xterm in normal mode
 bindkey "\e[1;3B" dirhistory_zle_dirhistory_down  # xterm in normal mode
 bindkey "\e\e[B" dirhistory_zle_dirhistory_down   # Putty
 bindkey "\eO3B" dirhistory_zle_dirhistory_down    # GNU screen
+# bindkey "^[[1;3B" dirhistory_zle_dirhistory_up  # gnome in normal mode
 case "$TERM_PROGRAM" in
 iTerm.app) bindkey "^[^[[B" dirhistory_zle_dirhistory_down ;;     # iTerm2
 Apple_Terminal) bindkey "^[[B" dirhistory_zle_dirhistory_down ;;  # Terminal.app
@@ -430,11 +434,11 @@ alias yarc="yay -Rcns $(pacman -Qdtq)"
 #END PLUGINS / FUNCTIONS MANUALY
 
 # Key-bindings
-#bindkey -s '^o' 'ranger^M'
-#bindkey -s '^f' 'zi^M'
-#bindkey -s '^s' 'ncdu^M'
-# bindkey -s '^n' 'nvim $(fzf)^M'
-# bindkey -s '^v' 'nvim\n'
+bindkey -s '^o' 'ranger^M'
+bindkey -s '^f' 'zi^M'
+bindkey -s '^s' 'ncdu^M'
+bindkey -s '^n' 'nvim $(fzf)^M'
+bindkey -s '^v' 'nvim\n'
 bindkey -s '^z' 'zi^M'
 bindkey '^[[P' delete-char
 bindkey "^p" up-line-or-beginning-search # Up
@@ -446,8 +450,8 @@ bindkey -r "^d"
 
 # Luke #1
 # Edit line in vim with ctrl-e:
-# autoload edit-command-line; zle -N edit-command-line
-# bindkey '^e' edit-command-line
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # FZF 
 # TODO update for mac
@@ -473,7 +477,7 @@ compinit
 
 # Environment variables set everywhere
 #export EDITOR="nvim"
-#export TERMINAL="alacritty"
+export TERMINAL="alacritty"
 #export BROWSER="brave"
 
 # For QT Themes
@@ -492,19 +496,19 @@ setxkbmap -option caps:escape
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # History in cache directory:
-#HISTSIZE=10000
+HISTSIZE=10000
 #"SAVEHIST=10000
 #"HISTFILE=~/.cache/zsh/history
 
 # Basic auto/tab complete:
-##autoload -U compinite "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh
-##zstyle ':completion:*' menu select
-##zmodload zsh/complist
-##compinit
-##_comp_options+=(globdots)		# Include hidden files.
+autoload -U compinite "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
-# bindkey -v
+bindkey -v
 export KEYTIMEOUT=1
 
 # Use vim keys in tab complete menu:
@@ -515,18 +519,18 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -v '^?' backward-delete-char
 
 # MSB Change CD for LF
-#LFCD="$GOPATH/src/github.com/gokcehan/lf/etc/lfcd.sh"  # source
-#LFCD="/home/msb/.config/lf/lfcd.sh"                                #  pre-built binary, make sure to use absolute path
-#if [ -f "$LFCD" ]; then
-#    source "$LFCD"
-#fi
+# LFCD="$GOPATH/src/github.com/gokcehan/lf/etc/lfcd.sh"  # source
+# LFCD="/home/msb/.config/lf/lfcd.sh"                                #  pre-built binary, make sure to use absolute path
+# if [ -f "$LFCD" ]; then
+   # source "$LFCD"
+# fi
 
 LS_COLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
 export CLICOLOR=1
 export LS_COLORS
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 alias ls='ls --color=auto'
-#alias ll="ls -alG"
+alias ll="ls -alG"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #unalias run-help
 #autoload run-help
@@ -534,7 +538,7 @@ HELPDIR=/usr/share/zsh/"${ZSH_VERSION}"/help
 alias help=run-help
 
 
-#bind '"\C-o":"lfcd\C-m"'
+# bind '"\C-o":"lfcd\C-m"'
 
 # Change cursor shape for different vi modes.
 # ---------------------------
@@ -570,13 +574,15 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-#bindkey -s 'o' 'lfcd\n'
+bindkey -s '^o' 'lfcd\n'
 bindkey '\eq' push-input
 bindkey -s '^o' '\eqlfcd\n'
 bindkey -s '^r' '\eqrcd\n'
 # Edit line in vim with ctrl-e:
-# autoload edit-command-line; zle -N edit-command-line
-# bindkey '^e' edit-command-line
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+
+# bindkey -rpM viins '^[^['
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
