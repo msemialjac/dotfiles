@@ -1,0 +1,5 @@
+#!/bin/zsh 
+#
+tar -cvf ~/Desktop/backup.tar.gz ~/{Desktop,Documents,Downloads} 2>/dev/null 
+
+

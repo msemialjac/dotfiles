@@ -130,6 +130,9 @@ exec --no-startup-id pasystray
 exec --no-startup-id bauh-tray 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+# Auto-lock after 10 minutes
+exec --no-startup xautolock -time 10 -locker lock
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -179,10 +182,8 @@ workspace_auto_back_and_forth yes
 
 # Lock options
 set $i3lockwall i3lock -i /home/msb/Pictures/Wallpapers/dark.png -t
-# betterlockscreen --lock blur
 bindsym $mod+Ctrl+Shift+k exec --no-startup-id betterlockscreen --lock blur
-
-#betterlockscreen -u /home/msb/Pictures/Wallpapers/dark.png --lock blur
+bindsym $mod+Ctrl+Shift+j exec --no-startup-id lock.sh 
 bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 
 # volume control (keyboard)
@@ -231,6 +232,7 @@ bindsym $mod+Ctrl+o workspace $ws5; exec --no-startup-id libreoffice
 bindsym $mod+Ctrl+t workspace $ws6;exec --no-startup-id thunderbird
 bindsym $mod+Ctrl+s workspace $ws8; exec --no-startup-id slack 
 bindsym $mod+Ctrl+z workspace $ws10;exec --no-startup-id zoom
+bindsym Print exec --no-startup-id flameshot 
 
 # Invert Colors Toggle (for Apps Not Having Dark Mode)
 bindsym $mod+Mod1+0 exec --no-startup-id xrandr-invert-colors -s 0  # 0 for Monitor 1
@@ -283,5 +285,5 @@ workspace $ws6 output DP-1
 workspace $ws7 output HDMI-2
 workspace $ws8 output DP-1
 workspace $ws9 output HDMI-2
-workspace $wsi10 output DP-1
+workspace $ws10 output DP-1
 
