@@ -350,7 +350,7 @@ bar {
 #    position top
   	status_command ~/bumblebee-status/bumblebee-status -m git arch-update \
     cpu memory battery pasink pasource date time -p time.format="%H:%M" \
-    date.format="%A, %b %d %Y"  -t dracula-powerline
+    date.format="%A, %b %d %Y"  date.left-click="gsimplecal" -t dracula-powerline
     #greyish-powerline 
 # arandr  xrandr } 
 # Start i3bar to display a workspace bar (plus the system information i3status
