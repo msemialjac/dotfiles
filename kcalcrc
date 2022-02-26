@@ -1,0 +1,30 @@
+[Colors]
+BackColor=0,0,0
+ConstantsButtonsColor=0,0,0
+ConstantsFontsColor=255,255,255
+ForeColor=255,255,255
+FunctionButtonsColor=0,0,0
+FunctionFontsColor=255,255,255
+HexButtonsColor=0,0,0
+HexFontsColor=255,255,255
+MemoryButtonsColor=0,0,0
+MemoryFontsColor=255,255,255
+NumberButtonsColor=0,0,0
+NumberFontsColor=255,255,255
+OperationButtonsColor=0,0,0
+OperationFontsColor=255,255,255
+StatButtonsColor=0,0,0
+StatFontsColor=255,255,255
+
+[Font]
+ButtonFont=Comic Sans MS,14,-1,5,50,0,0,0,0,0
+DisplayFont=Comic Sans MS,17,-1,5,75,0,0,0,0,0,Bold
+HistoryFont=Comic Sans MS,14,-1,5,50,0,0,0,0,0
+
+[General]
+CalculatorMode=science
+ShowConstants=true
+ShowHistory=true
+
+[Precision]
+precision=16

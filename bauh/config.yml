@@ -15,7 +15,9 @@ download:
   icons: true
   multithreaded: false
   multithreaded_client: null
-gems: null
+gems:
+- arch
+- appimage
 locale: null
 memory_cache:
   data_expiration: 3600
@@ -31,11 +33,11 @@ ui:
   auto_scale: false
   hdpi: true
   qt_style: fusion
-  scale_factor: 1.0
-  system_theme: false
+  scale_factor: 1.5
+  system_theme: true
   table:
-    max_displayed: 50
-  theme: light
+    max_displayed: 500
+  theme: darcula
   tray:
     default_icon: null
     updates_icon: null

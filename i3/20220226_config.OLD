@@ -1,44 +1,60 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
-# Set default i3 terminal
 set $TERM "alacritty"
 
-# Setting up mod key; Mod4 is Super/Windows/Command Key. Alternative is Mod1 = Alt Key
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# Mod4 is Super/Windows/Command Key. Alternative is Mod1 = Alt Key
 set $mod Mod4  
 
-# Font for window titles. Will also be used by the bar unless a 
-# different font is used in the bar {} block below towards the config end
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
 font pango:Ubuntu 12
+
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
+
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
 # start a terminal
 # default system terminal marked as: i3-sensible-terminal
-# if changed in line 6 of this config you can use $TERM instead
 bindsym $mod+Return exec $TERM 
 
 # kill focused window
 bindsym $mod+q kill
 
-# A more modern dmenu replacement -> rofi (for looks rofi has its own config file):
+# A more modern dmenu replacement is rofi:
 bindcode $mod+40 exec "rofi -modi drun#run -show drun"
 bindsym $mod+y exec "rofi -modi drun#run -show run"
 bindsym $mod+k exec "rofi -modi keys -show keys"
+#bindsym $mod+x exec "rofi -modi window -show window"
+# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# cursor keys + mod to change focused window 
+# change focus
+#bindsym $mod+h focus left
+#bindsym $mod+j focus down
+#bindsym $mod+k focus up
+#bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# when more than 1 window is in workspace
-# move container to different position with mod, shift and arrows
+# move focused window
+#bindsym $mod+Shift+h move left
+#bindsym $mod+Shift+j move down
+#bindsym $mod+Shift+k move up
+#bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -65,13 +81,14 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+Mod1+a focus parent
+bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+Mod1+d focus child
+#bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
+# Custom workspaces
 set $ws1 "01:  code"
 set $ws2 "02:  chrome"
 set $ws3 "03:  sys"
@@ -82,6 +99,7 @@ set $ws7 "07:  msb"
 set $ws8 "08: 聆slack"
 set $ws9 "09:  notes"
 set $ws10 "10: ﰍ zoom"
+
 
 # switch to workspace - Custom switch
 bindsym $mod+1 workspace $ws1
@@ -94,6 +112,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
 
 # move focused container to workspace - Custom mov focused
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -119,26 +138,21 @@ bindsym $mod+Control+8 move container to workspace number $ws8; workspace number
 bindsym $mod+Control+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Control+0 move container to workspace number $ws10; workspace number $ws10
 
-# without title bar:
-default_border pixel 1
-default_floating_border pixel 1
-
 # Some System Start / Tray apps
-exec --no-startup-id python /usr/bin/blueman-applet 
-exec --no-startup-id blueman 
-exec --no-startup-id pasystray  
-exec --no-startup-id bauh-tray 
+exec_always --no-startup-id python /usr/bin/blueman-applet 
+exec_always --no-startup-id blueman 
+exec_always --no-startup-id pkill pasystray 
+exec_always --no-startup-id pasystray 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r kill client restart
+
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Custom Exit with several options:
 # shutdown / restart / suspend...
@@ -156,13 +170,13 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+BackSpace mode "$mode_system"
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-
         # These bindings trigger as soon as you enter the resize mode
+
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -180,32 +194,16 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-# Activate Resize mode
-bindsym $mod+r mode "resize"
-
-# Resize window directly without resize mode via Alt+Super/Windows key
-bindsym $mod+Mod1 Left resize shrink width 10 px or 10 ppt
-bindsym $mod+Mod1 Down resize grow height 10 px or 10 ppt
-bindsym $mod+Mod1 Up resize shrink height 10 px or 10 ppt
-bindsym $mod+Mod1 Right resize grow width 10 px or 10 ppt
-
-# min and max of floating windows size (to prevent out of screen parts on floating windows)
 floating_minimum_size 75 x 50
 floating_maximum_size 1600 x 1200
 
-# Tiling mode layout manager with my layouts - you need to install layout manager from git project
-# https://github.com/klaxalk/i3-layout-manager
+bindsym $mod+r mode "resize"
 bindsym $mod+b exec --no-startup-id bash ~/.layouts/layout_manager.sh
 
-# Key combos for changing workspace on second consecutive press to get you back to original workspace 
-# (useful for correcting accidental WS switches) 
+# Custom Settings 
 workspace_auto_back_and_forth yes
-
-# Lock options
 set $i3lockwall i3lock -i /home/msb/Pictures/Wallpapers/dark.png -t
 # betterlockscreen --lock blur
-bindsym $mod+Ctrl+Shift+k exec --no-startup-id betterlockscreen --lock blur
-
 #betterlockscreen -u /home/msb/Pictures/Wallpapers/dark.png --lock blur
 bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 
@@ -213,14 +211,23 @@ bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 bindsym $mod+minus exec "amixer set Master 5%-"
 bindsym $mod+plus exec "amixer set Master 5%+"
 
-# Volume Control in ALG i3
-set $refresh_i3status killall -SIGUSR1 i3status
+#Volume Control in ALG i3
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Brightness Control in ALG i3
+# without title bar:
+default_border pixel 1
+default_floating_border pixel 1
+
+##Brightness Control in ALG i3
 bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
 
@@ -234,17 +241,19 @@ exec --no-startup-id feh --bg-fill --auto-zoom ~/Pictures/Wallpapers/dark.jpg
 floating_modifier $mod
 
 # picom transiton (-f flag)
-exec picom -f
+exec_always picom -f
 
 # Virtualbox monitor support
-exec --no-startup-id modprobe -a vboxguest vboxsf vboxvideo 
-exec --no-startup-id VBoxClient --clipboard
-exec --no-startup-id VBoxClient --draganddrop
-exec --no-startup-id VBoxClient --seamless
-exec --no-startup-id VBoxClient --checkhostversion
-exec --no-startup-id VBoxClient --vmsvga
+exec_always --no-startup-id modprobe -a vboxguest vboxsf vboxvideo 
+exec_always --no-startup-id VBoxClient --clipboard
+exec_always --no-startup-id VBoxClient --draganddrop
+exec_always --no-startup-id VBoxClient --seamless
+exec_always --no-startup-id VBoxClient --checkhostversion
+exec_always --no-startup-id VBoxClient --vmsvga
 
 # Custom - App shortcuts
+bindsym $mod+Ctrl+l exec --no-startup-id $TERM -hold -e lf
+bindsym $mod+Ctrl+v exec --no-startup-id $TERM -hold -e lvim
 bindsym --release $mod+Ctrl+x exec xkill # Source: https://unix.stackexchange.com/questions/383065/execute-xkill-in-i3
 bindsym $mod+Ctrl+p workspace $ws1;exec --no-startup-id pycharm
 bindsym $mod+Ctrl+c workspace $ws1;exec --no-startup-id code
@@ -257,47 +266,127 @@ bindsym $mod+Ctrl+s workspace $ws8; exec --no-startup-id slack
 bindsym $mod+Ctrl+z workspace $ws10;exec --no-startup-id zoom
 
 # Invert Colors Toggle (for Apps Not Having Dark Mode)
-bindsym $mod+Mod1+0 exec --no-startup-id xrandr-invert-colors -s 0  # 0 for Monitor 1
-bindsym $mod+Mod1+1 exec --no-startup-id xrandr-invert-colors -s 1  # 1 for Monitor 2
+bindsym $mod+Mod1+0 exec --no-startup-id xrandr-invert-colors -s 0
+bindsym $mod+Mod1+1 exec --no-startup-id xrandr-invert-colors -s 1
 
-# start apps in terminal and allocate them to scratchpads 
-# use chmod-ed 755 bash script from: https://gitlab.com/aquator/i3-scratchpad, and press again to hide them
-bindsym $mod+t exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty" 
-bindsym $modCtrl+h exec --no-startup-id "i3-scratchpad -t -acc -mt -d1600x800 alacritty -e htop"
-bindsym $mod+Ctrl+a exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty -e pulsemixer"
-bindsym $mod+Ctrl+r exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty -e ranger"
-bindsym $mod+Ctrl+l exec --no-startup-id "i3-scratchpad -t -acc -mt -d1600x800 alacritty -e lf"
-bindsym $mod+Ctrl+v exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty -e lvim"
+# scratchpads
+for_window [instance="scratchpad"] move window to scratchpad, scratchpad show; resize set 1280 640
+
+# start apps in terminal and allocate them to scratchpads
+bindsym Mod1+s exec --no-startup-id $TERM --class scratchpad
+bindsym Mod1+h exec --no-startup-id $TERM --class scratchpad -e htop
+bindsym Mod1+v exec --no-startup-id $TERM --class scratchpad -e pulsemixer
+bindsym Mod1+r exec --no-startup-id $TERM --class scratchpad -e ranger
+
+# send any app to a scratchpad
+bindsym $mod+Shift+BackSpace move scratchpad
+
+# toggle scratchpads
+bindsym $mod+Ctrl+BackSpace scratchpad show
+
+# scratchpads
+# for_window [instance="scratchpad"] move window to scratchpad, scratchpad show
+# for_window [class="Gnome-terminal" title="Scratchpad"] move scratchpad; show scratchpad
+
+# start apps in terminal and allocate them to scratchpads
+# bindsym $mod+Ctrl+n exec --no-startup-id $TERM -t "Scratchpad"
+# bindsym $mod+Ctrl+h exec --no-startup-id $TERM -t "Scratchpad" -e htop
+# bindsym $mod+Ctrl+a exec --no-startup-id $TERM -t "Scratchpad" -e pulsemixer
+# bindsym $mod+Ctrl+r exec --no-startup-id $TERM -t "Scratchpad" -e ranger
+
+
+# send any app to a scratchpad
+# bindsym $mod+Shift+BackSpace move scratchpad
+
+# toggle scratchpads
+# bindsym $mod+Ctrl+BackSpace scratchpad show
+
+# Some interesting improvements from i3 config in Arch GUI install 
+
+# Launch a program on a certain workspace, from rofi (which may or may not have a keybinding)
+#for_window [class="nameofapp"] move to workspace $wsno.
+# WS No. 5 has been used as example.
+# Note: You will have to launch the program from a program launcher (rofi).
+# for_window [class="google-chrome-stable"] move to workspace $ws2
+# for_window [class="htop"] move to workspace $ws3
+# for_window [class="ranger"] move to workspace $ws3
+# for_window [class="lf"] move to workspace $ws3
+# for_window [class="stacer"] move to workspace $ws3
+# for_window [class="thunderbird"] move to workspace $ws5
+# for_window [class="code"] move to workspace $ws1
+# for_window [class="pycharm"] move to workspace $ws1
+# for_window [class="zoom"] move to workspace $ws5
+# for_window [class="libreoffice"] move to workspace $ws4
+
+#The following way allows programs to be launched with a
+# defined keybinding, on a certain workspace, without
+# touching program launcher. Assign Programs to respective
+# workspaces.
+
+## Assign apps to workspaces
+#Assign      [class="stacer"]                     $ws3
+#Assign      [class="google-chrome"]              $ws2
+#Assign      [class="thunderbird"]                $ws5
+#Assign      [class="i3-sensible-terminal htop"]  $ws3
+#Assign      [class="code"]                       $ws1
+#Assign      [class="ranger"]                     $ws3
+#Assign      [class="libreoffice"]                $ws4
+
+
+#exec_always --no-startup-id "~/bin/tray.sh"
+#exec_always --no-startup-id polybar example
+#$HOME/.config/polybar/launch.sh
 
 # bumblebee status bar
 bar {
     font pango: PowerlineSymbols 14 
+#Hack Nerd Font Mono 14 Liberation Mono 14   
+#    FontAwesome 14, Icons 14
+# Inconsolata 14 Hack Nerd Font 14, 
+#    position top
   	status_command ~/bumblebee-status/bumblebee-status -m git arch-update \
     cpu memory battery pasink pasource date time -p time.format="%H:%M" \
-    date.format="%A, %b %d %Y"  date.left-click="gsimplecal" battery.left-click="kcalc" \
-    -t dracula-powerline
+    date.format="%A, %b %d %Y"  date.left-click="gsimplecal" -t dracula-powerline
+    #greyish-powerline 
+# arandr  xrandr } 
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+ # bar {
+ #         #status_command i3status
+
+ #         # Using PyStatus
+ #         status_command py3status -c ~/.layouts/i3status.conf #-i ~/.py3status_modules
+ #         separator_symbol                "|"
+ #         font pango:Hack Nerd Font 14, FontAwesome 14, Icons 14
+ #         # tray_output HDMI2 
            tray_output primary 
            colors {
-                      # These colors are from Dracula theme since I use bumblebee status bar with that theme
-                      background            #112233 
-                      statusline            #CED5D0
-                      focused_workspace     #72C373 #50FA7B #282A36
-                      active_workspace      #6272A4 #6272A4 #F8F8F2 
-                      inactive_workspace    #112233 #112233 #CED5D0
-                      urgent_workspace      #FF5555 #FF5555 #282A36
+                 background        #112233 
+                   statusline      #CED5D0
+
+#B280E1 #073642 #696f89
+                                            #BORDER #FILL   #TEXT
+                  focused_workspace         #72C373 #50FA7B #282A36
+                 active_workspace           #6272A4 #6272A4 #F8F8F2 
+                 inactive_workspace         #112233 #112233 #CED5D0
+                   urgent_workspace         #FF5555 #FF5555 #282A36
            }
   }
 
-# Setting monitors with xrandr based on relative positons (pseudo-syntax "right monitor on right side of left monitor")
+
+
+#Multi Monitor (Dual Monitor, extended monitor)
+#Replace HDMI2 with DVI-2, VGA-2, DP-2, DVI-2 etc. Get value by typing xrandr in the terminal.
+#If X is a natural number, then;
+#eDP-X is the display used in Laptops.
+#HDMI-X is display used in Desktop connected to monitor with HDMI Cable.
+#VGA-X is display used in Desktop connected to monitor with VGA Cable.
 exec --no-startup-id xrandr --output DP-1 --right-of HDMI-2 --auto
 
-# Dual Monitor Setup
-# Hint: Create and save default bash script via arandr (set primary and secondary monitor, postions etc.), 
-# and then copy paste its contents here (with "exec --no startup" before it)
-exec --no-startup-id xrandr --output DP-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output HDMI-1 --off --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal
+#exec_always --no-startup-id default.sh
+exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off --output HDMI-1 --off --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal
 
-# Assign workspaces to monitors for dual monitor setup
-# actual outputs depending on previous setting for 1st and 2nd monitor
+# My solution for above
 workspace $ws1 output HDMI-2
 workspace $ws2 output DP-1
 workspace $ws3 output HDMI-2
@@ -308,4 +397,4 @@ workspace $ws7 output HDMI-2
 workspace $ws8 output DP-1
 workspace $ws9 output HDMI-2
 workspace $wsi10 output DP-1
-
+#for_window [class=""] move to workspace $ws2
