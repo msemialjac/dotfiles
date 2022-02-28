@@ -1,5 +1,4 @@
-# Should you change your keyboard layout some time, delete
-# this file and re-run i3-config-wizard(1).
+# Should you change your keyboard layout some time, delete this file and re-run i3-config-wizard(1). 
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set default i3 terminal
@@ -12,21 +11,17 @@ set $mod Mod4
 # different font is used in the bar {} block below towards the config end
 font pango:Ubuntu 12
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so  they were default as an example. Modify as you see fit. 
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the creen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# start a terminal
-# default system terminal marked as: i3-sensible-terminal
-# if changed in line 6 of this config you can use $TERM instead
+# start a terminal; default system terminal marked as: i3-sensible-terminal; if changed in line 5 of this config you can use $TERM instead
 bindsym $mod+Return exec $TERM 
 
 # kill focused window
 bindsym $mod+q kill
 
-# A more modern dmenu replacement -> rofi (for looks rofi has its own config file):
+# A more modern dmenu replacement -> rofi (for customzing looks rofi has its own config file):
 bindcode $mod+40 exec "rofi -modi drun#run -show drun"
 bindsym $mod+y exec "rofi -modi drun#run -show run"
 bindsym $mod+k exec "rofi -modi keys -show keys"
@@ -37,8 +32,7 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# when more than 1 window is in workspace
-# move container to different position with mod, shift and arrows
+# when more than 1 window is in workspace move container to different position in same workspace with mod, shift and arrows
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -46,11 +40,15 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h
+bindsym $mod+Mod1+Ctrl+Left split h
+bindsym $mod+Mod1+Ctrl+Right split h
 
 # split in vertical orientation
 bindsym $mod+v split v
+bindsym $mod+Mod1+Ctrl+Down split v
+bindsym $mod+Mod1+Ctrl+Up split v
 
-# enter fullscreen mode for the focused container
+# enter/exit fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
@@ -70,8 +68,7 @@ bindsym $mod+Mod1+a focus parent
 # focus the child container
 bindsym $mod+Mod1+d focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Define names for default workspaces for which we configure key bindings later on. Use variables to avoid repeating the names in multiple places.
 set $ws1 "01:  code"
 set $ws2 "02:  chrome"
 set $ws3 "03:  sys"
@@ -83,7 +80,7 @@ set $ws8 "08: 聆slack"
 set $ws9 "09:  notes"
 set $ws10 "10: ﰍ zoom"
 
-# switch to workspace - Custom switch
+# switch to workspace 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -95,7 +92,7 @@ bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
-# move focused container to workspace - Custom mov focused
+# move focused container to workspace and stay on current workspace (focuse change) 
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -107,7 +104,7 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# move focused container to workspace and follow
+# move focused container to workspace and follow (focus remains)
 bindsym $mod+Control+1 move container to workspace number $ws1; workspace number $ws1
 bindsym $mod+Control+2 move container to workspace number $ws2; workspace number $ws2
 bindsym $mod+Control+3 move container to workspace number $ws3; workspace number $ws3
@@ -119,32 +116,34 @@ bindsym $mod+Control+8 move container to workspace number $ws8; workspace number
 bindsym $mod+Control+9 move container to workspace number $ws9; workspace number $ws9
 bindsym $mod+Control+0 move container to workspace number $ws10; workspace number $ws10
 
-# without title bar:
+# without title bar
 default_border pixel 1
 default_floating_border pixel 1
 
 # Some System Start / Tray apps
 exec --no-startup-id python /usr/bin/blueman-applet 
 exec --no-startup-id blueman 
-exec --no-startup-id pasystray  
 exec --no-startup-id bauh-tray 
+exec --no-startup-id fbautostart 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
-# Auto-lock after 10 minutes
+# Auto-lock after 10 minutes ???
 exec --no-startup xautolock -time 10 -locker lock
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
+# NetworkManager is popular way to manage wireless networks on Linux, and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
+# Change keyboard layout hr/us (Croatian/English US)
+bindsym $mod+Mod1+h exec setxkbmap hr
+bindsym $mod+Mod1+u exec setxkbmap us
+#
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# Custom Exit with several options:
-# shutdown / restart / suspend...
+# Custom Exit with several options: shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (CTRL+s) shutdown
 
 mode "$mode_system" {
@@ -163,16 +162,16 @@ mode "$mode_system" {
 bindsym $mod+BackSpace mode "$mode_system"
 
 # Resize window directly without resize mode via Alt+Super/Windows key
-bindsym $mod+Mod1 Left resize shrink width 10 px or 10 ppt
-bindsym $mod+Mod1 Down resize grow height 10 px or 10 ppt
-bindsym $mod+Mod1 Up resize shrink height 10 px or 10 ppt
 bindsym $mod+Mod1 Right resize grow width 10 px or 10 ppt
+bindsym $mod+Mod1 Up resize shrink height 10 px or 10 ppt
+bindsym $mod+Mod1 Down resize grow height 10 px or 10 ppt
+bindsym $mod+Mod1 Left resize shrink width 10 px or 10 ppt
 
 # min and max of floating windows size (to prevent out of screen parts on floating windows)
 floating_minimum_size 75 x 50
 floating_maximum_size 1600 x 1200
 
-# Tiling mode layout manager with my layouts - you need to install layout manager from git project
+# Tiling mode layout manager with my layouts - you need to install layout manager from git project:
 # https://github.com/klaxalk/i3-layout-manager
 bindsym $mod+b exec --no-startup-id bash ~/.layouts/layout_manager.sh
 
@@ -180,7 +179,7 @@ bindsym $mod+b exec --no-startup-id bash ~/.layouts/layout_manager.sh
 # (useful for correcting accidental WS switches) 
 workspace_auto_back_and_forth yes
 
-# Lock options
+# Lock options (3rd requires bash script. Mine is changed but original to modify can be found here: https://gist.github.com/csivanich/10914698)
 set $i3lockwall i3lock -i /home/msb/Pictures/Wallpapers/dark.png -t
 bindsym $mod+Ctrl+Shift+k exec --no-startup-id betterlockscreen --lock blur
 bindsym $mod+Ctrl+Shift+j exec --no-startup-id lock.sh 
@@ -190,27 +189,27 @@ bindsym $mod+Ctrl+Shift+l exec --no-startup-id $i3lockwall
 bindsym $mod+minus exec "amixer set Master 5%-"
 bindsym $mod+plus exec "amixer set Master 5%+"
 
-# Volume Control in ALG i3
+# Volume Control in ALG i3 via media keys
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Brightness Control in ALG i3
+# Brightness Control in ALG i3 via media keys
 bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 10
 
-# mouse focus off
-focus_follows_mouse  no
+# mouse focus off (when mouse cursor is moved to differnt tile/workspace focused container doesn' change)
+focus_follows_mouse no
 
-# set wallpapper
+# set wallpapper with feh
 exec --no-startup-id feh --bg-fill --auto-zoom ~/Pictures/Wallpapers/dark.jpg
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# picom transiton (-f flag)
+# picom transiton (-f flag for fading animations when changin focused tile/window). picom is successor of compton (not maintained any more)
 exec picom -f
 
 # Virtualbox monitor support
@@ -219,35 +218,42 @@ exec --no-startup-id VBoxClient --clipboard
 exec --no-startup-id VBoxClient --draganddrop
 exec --no-startup-id VBoxClient --seamless
 exec --no-startup-id VBoxClient --checkhostversion
-exec --no-startup-id VBoxClient --vmsvga
+exec --no-startup-id VBoxClient --vmsvga# Custom - App shortcuts
 
-# Custom - App shortcuts
+# Custom - App shortcuts with designated workspace where they open.
+# Caution: b/c of focus auto_back_and_forth is "On" you should not be in designated ws bellow.
+# If you are on same ws it will change focus to different ws and open app there). To change this delete line 176 in this config.
 bindsym --release $mod+Ctrl+x exec xkill # Source: https://unix.stackexchange.com/questions/383065/execute-xkill-in-i3
 bindsym $mod+Ctrl+p workspace $ws1;exec --no-startup-id pycharm
 bindsym $mod+Ctrl+c workspace $ws1;exec --no-startup-id code
 bindsym $mod+Ctrl+g workspace $ws2; exec --no-startup-id google-chrome-stable 
-bindsym $mod+Ctrl+m workspace $ws3;exec --no-startup-id stacer
 bindsym $mod+Ctrl+b workspace $ws4; exec --no-startup-id brave 
 bindsym $mod+Ctrl+o workspace $ws5; exec --no-startup-id libreoffice
-bindsym $mod+Ctrl+t workspace $ws6;exec --no-startup-id thunderbird
+bindsym $mod+Ctrl+e workspace $ws6;exec --no-startup-id thunderbird
 bindsym $mod+Ctrl+s workspace $ws8; exec --no-startup-id slack 
 bindsym $mod+Ctrl+z workspace $ws10;exec --no-startup-id zoom
-bindsym Print exec --no-startup-id flameshot 
+bindsym $mod+Mod1+f exec --no-startup-id flameshot 
 
-# Invert Colors Toggle (for Apps Not Having Dark Mode)
+# Invert Colors Toggle (hack for Apps Not Having Dark Mode to, sort of, make them be in Dark Mode)
 bindsym $mod+Mod1+0 exec --no-startup-id xrandr-invert-colors -s 0  # 0 for Monitor 1
 bindsym $mod+Mod1+1 exec --no-startup-id xrandr-invert-colors -s 1  # 1 for Monitor 2
 
-# start apps in terminal and allocate them to scratchpads 
-# use chmod-ed 755 bash script from: https://gitlab.com/aquator/i3-scratchpad, and press again to hide them
-bindsym $mod+t exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty" 
-bindsym $modCtrl+h exec --no-startup-id "i3-scratchpad -t -acc -mt -d1600x800 alacritty -e htop"
+# start apps in terminal and allocate them to scratchpads (toggle when pressed again, with animations from lelft, right, up and down) 
+# use chmod-ed 755 bash script from: https://gitlab.com/aquator/i3-scratchpad, script includes help for all the options 
+bindsym $mod+Ctrl+t exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty" 
+bindsym $mod+Ctrl+h exec --no-startup-id "i3-scratchpad -t -acc -mt -d1600x800 alacritty -e htop"
+bindsym $mod+Ctrl+r exec --no-startup-id "i3-scratchpad -t -acc -mr -d1600x800 alacritty -e ranger"
+bindsym $mod+Ctrl+l exec --no-startup-id "i3-scratchpad -t -acc -ml -d1600x800 alacritty -e lf"
 bindsym $mod+Ctrl+a exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty -e pulsemixer"
-bindsym $mod+Ctrl+r exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty -e ranger"
-bindsym $mod+Ctrl+l exec --no-startup-id "i3-scratchpad -t -acc -mt -d1600x800 alacritty -e lf"
-bindsym $mod+Ctrl+v exec --no-startup-id "i3-scratchpad -t -acc -mb -d1600x800 alacritty -e lvim"
+bindsym $mod+Ctrl+v exec --no-startup-id "i3-scratchpad -t -acc -mt -d1600x800 alacritty -e lvim"
+bindsym $mod+Ctrl+d exec --no-startup-id "i3-scratchpad -t -acc -mr kcalc"
+bindsym $mod+Ctrl+minus exec --no-startup-id "i3-scratchpad -t -acc -ml -d1600x800 keycombiner"
+bindsym $mod+Ctrl+m exec --no-startup-id "i3-scratchpad -t -abc -mb -d800x400 onboard"
 
-# bumblebee status bar
+# Bar -> bumblebee status bar needs to be installed here, change the path to bumblebee-status below after "status_command"  
+# Different modules have some python packages dependencies in order to work. See: https://bumblebee-status.readthedocs.io/en/latest/modules.html) 
+# I've got following bumblebee status bar modules: date (left click = calendar) and time, volume and mic (change +/- w/ mouse wheel up/down),
+# battery (left click = calculator), memory and CPU (both open "system monitor" on left click), arch updates indicator and git 
 bar {
     font pango: PowerlineSymbols 14 
   	status_command ~/bumblebee-status/bumblebee-status -m git arch-update \

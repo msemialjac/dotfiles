@@ -1,3 +1,3 @@
-2022/02/26-22:04:25.867 cf05d Reusing MANIFEST /home/msb/.config/keycombiner/Local Storage/leveldb/MANIFEST-000001
-2022/02/26-22:04:25.867 cf05d Recovering log #3
-2022/02/26-22:04:25.915 cf05d Reusing old log /home/msb/.config/keycombiner/Local Storage/leveldb/000003.log 
+2022/03/01-00:09:17.526 2f5d7 Reusing MANIFEST /home/msb/.config/keycombiner/Local Storage/leveldb/MANIFEST-000001
+2022/03/01-00:09:17.526 2f5d7 Recovering log #3
+2022/03/01-00:09:17.583 2f5d7 Reusing old log /home/msb/.config/keycombiner/Local Storage/leveldb/000003.log 
