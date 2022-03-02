@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FreeFileSync XmlType="GLOBAL" XmlFormat="23">
+    <Language Name="English (U.S.)"/>
+    <FailSafeFileCopy Enabled="true"/>
+    <CopyLockedFiles Enabled="false"/>
+    <CopyFilePermissions Enabled="false"/>
+    <FileTimeTolerance Seconds="2"/>
+    <RunWithBackgroundPriority Enabled="false"/>
+    <LockDirectoriesDuringSync Enabled="true"/>
+    <VerifyCopiedFiles Enabled="false"/>
+    <LogFiles MaxAge="30" Format="HTML"/>
+    <ProgressDialog AutoClose="false"/>
+    <OptionalDialogs>
+        <ConfirmStartSync Show="true"/>
+        <ConfirmSaveConfig Show="true"/>
+        <ConfirmCommandMassInvoke Show="true"/>
+        <WarnFolderNotExisting Show="true"/>
+        <WarnFoldersDifferInCase Show="true"/>
+        <WarnUnresolvedConflicts Show="true"/>
+        <WarnNotEnoughDiskSpace Show="true"/>
+        <WarnSignificantDifference Show="true"/>
+        <WarnRecycleBinNotAvailable Show="true"/>
+        <WarnInputFieldEmpty Show="true"/>
+        <WarnModificationTimeError Show="true"/>
+        <WarnDependentFolderPair Show="true"/>
+        <WarnDependentBaseFolders Show="true"/>
+        <WarnDirectoryLockFailed Show="true"/>
+        <WarnVersioningFolderPartOfSync Show="true"/>
+    </OptionalDialogs>
+    <Sounds>
+        <CompareFinished Path=""/>
+        <SyncFinished Path="%ffs_resource%/bell.wav"/>
+        <AlertPending Path="%ffs_resource%/remind.wav"/>
+    </Sounds>
+    <MainDialog>
+        <SearchPanel CaseSensitive="false"/>
+        <ConfigPanel ScrollPos="0" SyncOverdue="7" SortByColumn="Name" SortAscending="true">
+            <Configurations MaxSize="100" LastSelected="/home/msb/bin2bin.ffs_gui">
+                <Item Result="Stopped" Config="/home/msb/.config/FreeFileSync/LastRun.ffs_gui" LastSync="0" Log="" Color="DDDDDD"/>
+                <Item Result="Success" Config="/home/msb/bin2bin.ffs_gui" LastSync="1646091778" Log="/home/msb/.config/FreeFileSync/Logs/bin2bin 2022-03-01 004258.336.html"/>
+            </Configurations>
+            <LastUsed>
+                <Item>/home/msb/bin2bin.ffs_gui</Item>
+            </LastUsed>
+        </ConfigPanel>
+        <OverviewPanel ShowPercentage="true" SortByColumn="Bytes" SortAscending="false"/>
+        <FilePanel ShowIcons="true" IconSize="Small" SashOffset="0" FolderPairsMax="6" PathFormatLeft="Relative" PathFormatRight="Relative">
+            <FolderHistoryLeft LastSelected="/home/msb/bin">
+                <Item>/home/msb/bin</Item>
+            </FolderHistoryLeft>
+            <FolderHistoryRight LastSelected="/home/msb/.config/bin">
+                <Item>/home/msb/.config/bin</Item>
+            </FolderHistoryRight>
+        </FilePanel>
+        <ManualCopyTo KeepRelativePaths="false" OverwriteIfExists="false">
+            <FolderHistory TargetFolder="" LastSelected=""/>
+        </ManualCopyTo>
+        <DefaultViewFilter Equal="false" Conflict="true" Excluded="false">
+            <Difference LeftOnly="true" RightOnly="true" LeftNewer="true" RightNewer="true" Different="true"/>
+            <Action CreateLeft="true" CreateRight="true" UpdateLeft="true" UpdateRight="true" DeleteLeft="true" DeleteRight="true" DoNothing="true"/>
+        </DefaultViewFilter>
+    </MainDialog>
+    <FolderHistory MaxSize="20"/>
+    <SftpKeyFile LastSelected=""/>
+    <DefaultFilter>
+        <Include>
+            <Item>*</Item>
+        </Include>
+        <Exclude>
+            <Item>*/.Trash-*/</Item>
+            <Item>*/.recycle/</Item>
+        </Exclude>
+        <TimeSpan Type="None">0</TimeSpan>
+        <SizeMin Unit="None">0</SizeMin>
+        <SizeMax Unit="None">0</SizeMax>
+    </DefaultFilter>
+    <VersioningFolderHistory LastSelected=""/>
+    <LogFolderHistory LastSelected=""/>
+    <EmailHistory MaxSize="10"/>
+    <CommandHistory MaxSize="10"/>
+    <ExternalApps>
+        <Item Label="Browse directory">xdg-open "$(dirname "%local_path%")"</Item>
+        <Item Label="Open with default application">xdg-open "%local_path%"</Item>
+    </ExternalApps>
+    <LastOnlineCheck>1646091703</LastOnlineCheck>
+    <LastOnlineVersion>11.17</LastOnlineVersion>
+    <DpiLayouts>
+        <Layout Scale="100%">
+            <MainDialog Width="1918" Height="1030" PosX="0" PosY="24" Maximized="false">
+                <PanelLayout>layout2|name=CenterPanel;caption=;state=256;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=722;besth=53;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=TopPanel;caption=Main Bar;state=2099708;dir=1;layer=2;row=1;pos=0;prop=100000;bestw=618;besth=74;minw=170;minh=74;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ProgressPanel;caption=;state=2097662;dir=1;layer=2;row=2;pos=0;prop=100000;bestw=876;besth=120;minw=-1;minh=120;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=FoldersPanel;caption=Folder Pairs;state=2099708;dir=1;layer=2;row=3;pos=0;prop=100000;bestw=-1;besth=63;minw=-1;minh=63;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=SearchPanel;caption=Find;state=2099710;dir=3;layer=2;row=3;pos=0;prop=100000;bestw=298;besth=38;minw=100;minh=38;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=LogPanel;caption=Log;state=6293502;dir=3;layer=2;row=2;pos=0;prop=100000;bestw=600;besth=300;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ViewFilterPanel;caption=View Settings;state=2099708;dir=3;layer=2;row=1;pos=0;prop=100000;bestw=839;besth=55;minw=100;minh=55;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=ConfigPanel;caption=Configuration;state=2099196;dir=4;layer=3;row=0;pos=0;prop=100000;bestw=258;besth=61;minw=239;minh=61;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=OverviewPanel;caption=Overview;state=2099196;dir=4;layer=3;row=0;pos=1;prop=100000;bestw=300;besth=20;minw=100;minh=100;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=722|dock_size(1,2,1)=74|dock_size(1,2,3)=63|dock_size(3,2,1)=55|dock_size(4,3,0)=302|</PanelLayout>
+                <ConfigPanel>
+                    <Item Type="Name" Visible="true" Width="-117" Stretch="1"/>
+                    <Item Type="Last" Visible="true" Width="75" Stretch="0"/>
+                    <Item Type="Log" Visible="true" Width="42" Stretch="0"/>
+                </ConfigPanel>
+                <OverviewPanel>
+                    <Item Type="Tree" Visible="true" Width="-120" Stretch="1"/>
+                    <Item Type="Count" Visible="true" Width="60" Stretch="0"/>
+                    <Item Type="Bytes" Visible="true" Width="60" Stretch="0"/>
+                </OverviewPanel>
+                <FilePanelLeft>
+                    <Item Type="Path" Visible="true" Width="-100" Stretch="1"/>
+                    <Item Type="Ext" Visible="false" Width="60" Stretch="0"/>
+                    <Item Type="Date" Visible="false" Width="140" Stretch="0"/>
+                    <Item Type="Size" Visible="true" Width="100" Stretch="0"/>
+                </FilePanelLeft>
+                <FilePanelRight>
+                    <Item Type="Path" Visible="true" Width="-100" Stretch="1"/>
+                    <Item Type="Ext" Visible="false" Width="60" Stretch="0"/>
+                    <Item Type="Date" Visible="false" Width="140" Stretch="0"/>
+                    <Item Type="Size" Visible="true" Width="100" Stretch="0"/>
+                </FilePanelRight>
+            </MainDialog>
+            <ProgressDialog Width="550" Height="474" Maximized="false"/>
+        </Layout>
+    </DpiLayouts>
+</FreeFileSync>
